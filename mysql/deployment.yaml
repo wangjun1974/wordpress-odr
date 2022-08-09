@@ -16,7 +16,7 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql:5.6
+      - image: bitnami/mysql:8.0
         name: mysql
         env:
         - name: MYSQL_DATABASE
@@ -32,7 +32,7 @@ spec:
           name: mysql
         volumeMounts:
         - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+          mountPath: /bitnami/mysql
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:

@@ -16,14 +16,29 @@ spec:
         app: wordpress
     spec:
       containers:
-      - image: quay.io/jonkey/wordpress:20220809
+      - image: bitnami/wordpress:6
         name: wordpress
+        env:
+        - name: WORDPRESS_DATABASE_HOST
+          value: mysql
+        - name: WORDPRESS_DATABASE_PORT_NUMBER
+          value: "3306"
+        - name: WORDPRESS_DATABASE_NAME
+          value: wordpress
+        - name: WORDPRESS_DATABASE_USER
+          value: username
+        - name: WORDPRESS_DATABASE_PASSWORD
+          value: password
+        - name: WORDPRESS_USERNAME
+          value: admin
+        - name: WORDPRESS_PASSWORD
+          value: admin
         ports:
         - containerPort: 8080
           name: wordpress
         volumeMounts:
         - name: wordpress-persistent-storage
-          mountPath: /var/www/html
+          mountPath: /bitnami/wordpress
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
